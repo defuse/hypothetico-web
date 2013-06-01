@@ -52,7 +52,7 @@
     </p>
 
     <p>
-    The submission deadline for Issue #1 is <b>August 1, 2013</b>. To submit
+    The submission deadline for Issue #1 is <b>January 1, 2014</b>. To submit
     a peice, email it as a .txt attachment to <a
     href="mailto:havoc@defuse.ca">havoc@defuse.ca</a>. If you have a question
     please send it to the same address. Please include "Hypothetico" in the
