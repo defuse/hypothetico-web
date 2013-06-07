@@ -74,7 +74,8 @@
     a piece, email it as a .txt attachment to <a
     href="mailto:havoc@defuse.ca">havoc@defuse.ca</a>. If you have a question
     please send it to the same address. Please include "Hypothetico" in the
-    subject line.
+    subject line. By submitting a work you agree to have it published under the
+    Creative Commons Attribution-ShareAlike license.
     </p>
 
     </div>
