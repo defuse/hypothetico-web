@@ -82,7 +82,7 @@ class URLParse
                                             "defuse.h.defuse.ca",
                                             "defuse",
                                             );
-    private static $FORCE_HTTPS = true;
+    private static $FORCE_HTTPS = false;
     private static $DEFAULT_TITLE = "Hypothetico | Hypothetico - A magazine for your mind.";
     private static $DEFAULT_META_DESC = "Hypothetico Magazine";
     private static $DEFAULT_META_KEYWORDS = "hypothetico, magazine, e-zine, fugue, mind";
