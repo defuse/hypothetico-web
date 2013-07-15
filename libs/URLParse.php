@@ -392,7 +392,7 @@ class URLParse
         } elseif ($slash + 1 === strlen($file)) {
             return "";
         } else {
-            trigger_error("assertion: slash <= strlen(file)", E_USER_ERROR);
+            trigger_error("assertion: slash + 1 <= strlen(file)", E_USER_ERROR);
         }
     }
 
