@@ -257,7 +257,7 @@ class URLParse
     // this method will return 'foo', if $PAGE_INFO['foo'] exists.
     private static function getPageArrayKey()
     {
-        $page_name = strtolower(self::getUrlFile());
+        $page_name = strtolower(self::getUrlCmsPage());
         $htm_removed = false;
 
         // Remove the .htm extension if present
@@ -371,6 +371,25 @@ class URLParse
         return substr($url, 0, $first_slash + 1);
     }
 
+    private static function getUrlCmsPage()
+    {
+        /* This gives us everything after the / in the URL */
+        $file = self::getUrlFile();
+
+        /* Now we have to strip $DIRS_TO_IGNORE directories from the start */
+        $slash = -1;
+        for ($i = 0; $i < self::$DIRS_TO_IGNORE; $i++)
+        {
+            $slash = strpos($file, "/", $slash + 1);
+            if ($slash === false) {
+                trigger_error("Bad DIRS_TO_IGNORE setting (too high?).", E_USER_ERROR);
+                break;
+            }
+        }
+
+        return substr($file, $slash + 1);
+    }
+
     // Returns the index of the slash after the hostname, or the index of the
     // last character in the string if there is none.
     private static function getFirstSlashIndex($url)
@@ -383,20 +402,6 @@ class URLParse
 
         // find the first slash after the end of the protocol specifier
         $first_slash = strpos($url, "/", $prot_end);
-
-        // Skip over subfolders (when HelloWorld! is not in the root folder)
-        if(self::$DIRS_TO_IGNORE > 0 && $first_slash === false) {
-            trigger_error("Bad DIRS_TO_IGNORE setting (not in a subfolder?).", E_USER_ERROR);
-            break;
-        }
-        for($i = 0; $i < self::$DIRS_TO_IGNORE; $i++)
-        {
-            $first_slash = strpos($url, "/", $first_slash + 1);
-            if($first_slash === false) {
-                trigger_error("Bad DIRS_TO_IGNORE setting (too high?).", E_USER_ERROR);
-                break;
-            }
-        }
 
         // If there is no slash after the protocol specifier, the entire URL
         // is considered the "front" so we return the index of the last element.
