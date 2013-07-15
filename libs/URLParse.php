@@ -327,7 +327,7 @@ class URLParse
             }
         }
         // Otherwise, if it's a normal page name, it should end in .htm
-        elseif(!empty($file) && strpos($file, ".htm") != strlen($file) - 4)
+        elseif(!empty($proper_name) && strpos($file, ".htm") != strlen($file) - 4)
         {
             // Redirect to the .htm version, preserving the parameters
             self::permRedirect(self::getUrlFront() . $file . ".htm" . self::getUrlParams()); 
@@ -387,7 +387,13 @@ class URLParse
             }
         }
 
-        return substr($file, $slash + 1);
+        if ($slash + 1 < strlen($file)) {
+            return substr($file, $slash + 1);
+        } elseif ($slash + 1 === strlen($file)) {
+            return "";
+        } else {
+            trigger_error("assertion: slash <= strlen(file)", E_USER_ERROR);
+        }
     }
 
     // Returns the index of the slash after the hostname, or the index of the
